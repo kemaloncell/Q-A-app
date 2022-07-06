@@ -47,6 +47,7 @@ const quiz = new Quiz(questions);
 
 document.querySelector(".btn-start").addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex){
+        document.querySelector(".quiz-box").classList.add("active")
         console.log(quiz.getQuestion())
         quiz.questionIndex += 1;
     }else{
