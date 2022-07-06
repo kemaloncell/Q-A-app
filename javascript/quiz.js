@@ -2,6 +2,7 @@
 function Quiz(questions) {
     this.questions = questions;
     this.questionIndex = 0;
+    this.trueAnswer = 0;
 }
 
 //Add getQuestion function on  Quiz prototype

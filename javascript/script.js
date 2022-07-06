@@ -1,7 +1,6 @@
 const quiz = new Quiz(questions);
 const ui = new UI()
 
-// Start Button
 ui.btn_start.addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex){
         ui.quiz_box.classList.add("active")
@@ -13,7 +12,6 @@ ui.btn_start.addEventListener("click", function (){
 
 });
 
-// Next Button
 ui.btn_next.addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex +1){
         ui.quiz_box.classList.add("active")
@@ -23,8 +21,22 @@ ui.btn_next.addEventListener("click", function (){
 
     }else{
         console.log("Quiz Over")
+        ui.quiz_box.classList.remove("active")
+        ui.score_box.classList.add("active")
+        ui.showScore(quiz.questions.length, quiz.trueAnswer)
     }
 })
+
+ui.btn_quit.addEventListener("click", function (){
+    window.location.reload();
+});
+
+ui.btn_replay.addEventListener("click", function (){
+    quiz.questionIndex = 0;
+    quiz.trueAnswer = 0;
+    ui.btn_start.click();
+    ui.score_box.classList.remove("active")
+});
 
 
 
@@ -36,6 +48,7 @@ function selectedOption(option){
     if (question.checkAnswer(result)){
         option.classList.add("correct");
         option.insertAdjacentHTML("beforeend", ui.correctIcon)
+        quiz.trueAnswer += 1;
     }else{
         option.classList.add("incorrect");
         option.insertAdjacentHTML("beforeend", ui.incorrectIcon)

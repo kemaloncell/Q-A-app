@@ -1,7 +1,10 @@
 function UI(){
     this.btn_start = document.querySelector(".btn-start")
     this.btn_next = document.querySelector(".btn_next")
+    this.btn_replay = document.querySelector(".btn_replay")
+    this.btn_quit = document.querySelector(".btn_quit")
     this.quiz_box = document.querySelector(".quiz-box")
+    this.score_box = document.querySelector(".score_box")
     this.option_list = document.querySelector(".option_list")
     this.correctIcon ='<div class="icon"><i class="fa-solid fa-check"></i></div>'
     this.incorrectIcon ='<div class="icon"><i class="fa-solid fa-circle-xmark"></i></div>'
@@ -34,4 +37,11 @@ UI.prototype.showQuestionCount = function(questionIndex, questionSum){
     document.querySelector(".question-count").innerHTML = tag;
     document.querySelector(".card-footer").classList.add("between");
 
+}
+
+UI.prototype.showScore = function(totalCount, correctCount){
+    let tag = `<div class="score">
+    <h3>You scored ${correctCount} / ${totalCount}</h3>
+    </div>`
+    document.querySelector(".score_text").innerHTML = tag;
 }
