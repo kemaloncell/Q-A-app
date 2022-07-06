@@ -49,6 +49,7 @@ document.querySelector(".btn-start").addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex){
         document.querySelector(".quiz-box").classList.add("active")
         showQuestion(quiz.getQuestion());
+
     }else{
         console.log("Quiz Over")
     }
@@ -60,13 +61,22 @@ document.querySelector(".btn_next").addEventListener("click", function (){
         document.querySelector(".quiz-box").classList.add("active")
         quiz.questionIndex += 1;
         showQuestion(quiz.getQuestion());
+        nextButton.classList.remove("show");
     }else{
         console.log("Quiz Over")
     }
 })
+
+const option_list = document.querySelector(".option_list")
+const correctIcon ='<div class="icon"><i class="fa-solid fa-check"></i></div>'
+const nextButton = document.querySelector(".btn_next");
+
+const incorrectIcon ='<div class="icon"><i class="fa-solid fa-circle-xmark"></i></div>'
+
 function showQuestion(question){
     let questionText = `<span>${question.questionText}</span>`;
     let options ='';
+
 
     for(let answer in question.options){
         options += `<div class="option">
@@ -75,5 +85,30 @@ function showQuestion(question){
     }
 
     document.querySelector(".question-text").innerHTML = questionText;
-    document.querySelector(".option_list").innerHTML = options;
+    option_list.innerHTML = options;
+
+    const option = option_list.querySelectorAll(".option")
+
+    for(let opt of option){
+        // set the 'this' of event listener for each option
+       opt.setAttribute("onclick", "selectedOption(this)")
+    }
+}
+function selectedOption(option){
+    // option = <div class="option">....</div>
+    let result = option.querySelector("span b").textContent;
+    let question = quiz.getQuestion();
+
+    if (question.checkAnswer(result)){
+        option.classList.add("correct");
+        option.insertAdjacentHTML("beforeend", correctIcon)
+    }else{
+        option.classList.add("incorrect");
+        option.insertAdjacentHTML("beforeend", incorrectIcon)
+    }
+    for(let i = 0; i < option_list.children.length; i++){
+        console.log(option_list.children[i])
+        option_list.children[i].classList.add("disabled");
+    }
+    nextButton.classList.add("show");
 }
