@@ -45,6 +45,7 @@ Quiz.prototype.getQuestion = function () {
 
 const quiz = new Quiz(questions);
 
+// Start Button
 document.querySelector(".btn-start").addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex){
         document.querySelector(".quiz-box").classList.add("active")
@@ -56,12 +57,14 @@ document.querySelector(".btn-start").addEventListener("click", function (){
 
 });
 
+// Next Button
 document.querySelector(".btn_next").addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex +1){
         document.querySelector(".quiz-box").classList.add("active")
         quiz.questionIndex += 1;
         showQuestion(quiz.getQuestion());
         nextButton.classList.remove("show");
+
     }else{
         console.log("Quiz Over")
     }
@@ -88,12 +91,13 @@ function showQuestion(question){
     option_list.innerHTML = options;
 
     const option = option_list.querySelectorAll(".option")
-
     for(let opt of option){
         // set the 'this' of event listener for each option
        opt.setAttribute("onclick", "selectedOption(this)")
     }
+    showQuestionCount(quiz.questionIndex + 1 , quiz.questions.length)
 }
+
 function selectedOption(option){
     // option = <div class="option">....</div>
     let result = option.querySelector("span b").textContent;
@@ -111,4 +115,11 @@ function selectedOption(option){
         option_list.children[i].classList.add("disabled");
     }
     nextButton.classList.add("show");
+}
+
+function showQuestionCount(questionIndex, questionSum){
+    let tag = `  <span class="badge bg-warning">${questionIndex} / ${questionSum}</span>`
+     document.querySelector(".question-count").innerHTML = tag;
+     document.querySelector(".card-footer").classList.add("between");
+
 }

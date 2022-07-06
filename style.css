@@ -72,3 +72,9 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+.card-footer.between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
