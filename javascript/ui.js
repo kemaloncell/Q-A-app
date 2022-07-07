@@ -10,6 +10,7 @@ function UI(){
     this.incorrectIcon ='<div class="icon"><i class="fa-solid fa-circle-xmark"></i></div>'
     this.timer_second = document.querySelector(".timer_second")
     this.timer_text = document.querySelector(".timer_text")
+    this.timer_line = document.querySelector(".timer_line")
 
 }
 

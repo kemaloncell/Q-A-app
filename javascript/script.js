@@ -3,7 +3,8 @@ const ui = new UI()
 
 ui.btn_start.addEventListener("click", function (){
         ui.quiz_box.classList.add("active")
-        startTimer(3);
+        startTimer(10);
+        startTimerLine();
         ui.showQuestion(quiz.getQuestion());
 });
 
@@ -11,13 +12,16 @@ ui.btn_next.addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex +1){
         ui.quiz_box.classList.add("active")
         clearInterval(counter);
-        startTimer(3);
+        clearInterval(counter_line);
+        startTimer(10);
+        startTimerLine();
         quiz.questionIndex += 1;
         ui.showQuestion(quiz.getQuestion());
         ui.btn_next.classList.remove("show");
 
     }else{
         clearInterval(counter)
+        clearInterval(counter_line);
         ui.quiz_box.classList.remove("active")
         ui.score_box.classList.add("active")
         ui.showScore(quiz.questions.length, quiz.trueAnswer)
@@ -40,6 +44,7 @@ ui.btn_replay.addEventListener("click", function (){
 function selectedOption(option){
     // option = <div class="option">....</div>
     clearInterval(counter);
+    clearInterval(counter_line);
     let result = option.querySelector("span b").textContent;
     let question = quiz.getQuestion();
 
@@ -82,5 +87,19 @@ function startTimer(time){
           }
           ui.btn_next.classList.add("show");
       }
+    }
+}
+
+let counter_line;
+function startTimerLine(){
+    let line_width = 0;
+    counter_line = setInterval(timer, 20)
+
+    function timer(){
+        line_width += 1;
+        ui.timer_line.style.width = line_width + "px";
+        if(line_width > 549){
+        clearInterval(counter_line);
+        }
     }
 }
