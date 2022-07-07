@@ -2,26 +2,22 @@ const quiz = new Quiz(questions);
 const ui = new UI()
 
 ui.btn_start.addEventListener("click", function (){
-    if(quiz.questions.length !== quiz.questionIndex){
         ui.quiz_box.classList.add("active")
-        startTimer(10);
+        startTimer(3);
         ui.showQuestion(quiz.getQuestion());
-
-    }else{
-        console.log("Quiz Over")
-    }
-
 });
 
 ui.btn_next.addEventListener("click", function (){
     if(quiz.questions.length !== quiz.questionIndex +1){
         ui.quiz_box.classList.add("active")
+        clearInterval(counter);
+        startTimer(3);
         quiz.questionIndex += 1;
         ui.showQuestion(quiz.getQuestion());
         ui.btn_next.classList.remove("show");
 
     }else{
-        console.log("Quiz Over")
+        clearInterval(counter)
         ui.quiz_box.classList.remove("active")
         ui.score_box.classList.add("active")
         ui.showScore(quiz.questions.length, quiz.trueAnswer)
@@ -43,6 +39,7 @@ ui.btn_replay.addEventListener("click", function (){
 
 function selectedOption(option){
     // option = <div class="option">....</div>
+    clearInterval(counter);
     let result = option.querySelector("span b").textContent;
     let question = quiz.getQuestion();
 
@@ -72,6 +69,18 @@ function startTimer(time){
           clearInterval(counter);
 
           ui.timer_text.textContent = "Time's up!";
+
+          let answer = quiz.getQuestion().trueAnswer
+
+          for(let option of ui.option_list.children){
+             if(option.querySelector("span b").textContent === answer ){
+                 option.classList.add("correct");
+                    option.insertAdjacentHTML("beforeend", ui.correctIcon)
+             }
+
+             option.classList.add("disabled");
+          }
+          ui.btn_next.classList.add("show");
       }
     }
 }
