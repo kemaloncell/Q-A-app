@@ -8,6 +8,9 @@ function UI(){
     this.option_list = document.querySelector(".option_list")
     this.correctIcon ='<div class="icon"><i class="fa-solid fa-check"></i></div>'
     this.incorrectIcon ='<div class="icon"><i class="fa-solid fa-circle-xmark"></i></div>'
+    this.timer_second = document.querySelector(".timer_second")
+    this.timer_text = document.querySelector(".timer_text")
+
 }
 
 UI.prototype.showQuestion = function(question){

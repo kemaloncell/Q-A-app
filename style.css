@@ -80,6 +80,36 @@
     justify-content: space-between;
 }
 
+/* Timer */
+.quiz-box header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quiz-box header .timer{
+    display: flex;
+    align-items: center;
+    background: #143f68;
+    color:#fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+.quiz-box header .timer .timer_text{
+    font-size: 14px;
+}
+
+.quiz-box header .timer .timer_second{
+    background: #f0a500;
+    border-radius: 3px;
+    padding: 3px;
+    margin-left: 3px;
+    width: 25px;
+    text-align: center;
+}
+
+/* Score box */
 .score_box.active{
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
@@ -107,3 +137,4 @@
     font-weight: 600;
     margin-bottom:10px
 }
+

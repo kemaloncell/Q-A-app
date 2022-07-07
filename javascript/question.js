@@ -11,9 +11,9 @@ Question.prototype.checkAnswer = function (answer) {
 }
 
 let questions=[
-    new Question("1-Which is javascript package management?",{a: "TypeScript", b: "Node.javascript", c: "Npm", d:"Nuget"}, "c"),
-    new Question("2-Which is .net package management?",{a: "nuget", b: "Node.javascript", c: "npm"}, "a"),
-    new Question("3-Which is javascript package management?",{a: "TypeScript", b: "Node.javascript", c: "npm"}, "c"),
-    new Question("4-Which is javascript package management?",{a: "TypeScript", b: "Node.javascript", c: "npm"}, "c"),
+    new Question("1-Which is javascript package management?",{a: "typescript", b: "node.js", c: "npm", d:"nuget"}, "c"),
+    new Question("2-Which is not considered in frontend scope?",{a: "css", b: "html", c: "javascript",d:"sql"}, "d"),
+    new Question("3-Which is not considered in backend scope?",{a: "node.js", b: "typescript", c: "angular",d:"react"}, "a"),
+    new Question("4-Which does not use the JavaScript programming language?",{a: "react", b: "angular", c: "vue.js",d: "asp.net"}, "d"),
 
 ]
